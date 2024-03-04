@@ -1,3 +1,3 @@
-mod updater;
-mod vanilla;
+pub mod updater;
+pub mod vanilla;
 pub(crate) mod apis;

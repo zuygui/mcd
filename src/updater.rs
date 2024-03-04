@@ -67,6 +67,12 @@ impl UpdaterBuilder {
     }
 
     /// Set the Game Directory
+    pub fn with_game_dir(mut self, game_dir: impl Into<PathBuf>) -> Self {
+        self.game_dir = Some(game_dir.into());
+        self
+    }
+
+    /// Build the Updater
     pub fn build(self) -> Updater {
         Updater {
             vanilla: self.vanilla.unwrap(),
