@@ -9,6 +9,8 @@ The Updater will be organized in the following way:
 - Extra Files (Ressource Packs, etc. NO MODS)
 */
 
+use std::path::PathBuf;
+
 use crate::vanilla::VanillaVersion;
 
 /// The Updater
@@ -21,6 +23,13 @@ pub struct Updater {
     /// 
     /// This is the first step to update the game
     vanilla: VanillaVersion,
+
+    /// Game Directory
+    /// 
+    /// @type PathBuf
+    ///
+    /// The directory where the game is installed
+    game_dir: PathBuf
 
     // tweak ?
 
@@ -39,6 +48,7 @@ impl Updater {
 /// An Updater Builder is a struct that allows to create an Updater modularly
 pub struct UpdaterBuilder {
     vanilla: Option<VanillaVersion>,
+    game_dir: Option<PathBuf>
 }
 
 impl UpdaterBuilder {
@@ -46,6 +56,7 @@ impl UpdaterBuilder {
     pub fn new() -> Self {
         Self {
             vanilla: None,
+            game_dir: None
         }
     }
 
@@ -55,10 +66,11 @@ impl UpdaterBuilder {
         self
     }
 
-    /// Build the Updater
+    /// Set the Game Directory
     pub fn build(self) -> Updater {
         Updater {
             vanilla: self.vanilla.unwrap(),
+            game_dir: self.game_dir.unwrap_or(PathBuf::from("minecraft"))
         }
     }
 }
