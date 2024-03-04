@@ -4,7 +4,7 @@ use super::MojangApiWrapper;
 
 
 #[derive(Debug, Deserialize)]
-struct VersionJson {
+pub(crate) struct VersionJson {
   arguments: Option<Arguments>,
   asset_index: AssetIndex,
   assets: String,

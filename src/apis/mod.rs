@@ -1,1 +1,1 @@
-mod mojang_api;
+pub(crate) mod mojang_api;

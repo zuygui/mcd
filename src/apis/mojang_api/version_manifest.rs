@@ -30,7 +30,7 @@ pub(crate) struct Version {
 
 
 impl MojangApiWrapper {
-    pub async fn get_version_manifest(&self) -> Result<VersionManifestV2, reqwest::Error> {
+    pub(crate) async fn get_version_manifest(&self) -> Result<VersionManifestV2, reqwest::Error> {
         let response = self.http_client.get(url).send().await?.json().await?;
         Ok(response)
     }

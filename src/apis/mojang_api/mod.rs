@@ -1,6 +1,14 @@
-mod version_manifest;
-mod version_json;
+pub(crate) mod version_manifest;
+pub(crate) mod version_json;
 
-struct MojangApiWrapper {
+pub(crate) struct MojangApiWrapper {
   http_client: reqwest::Client,
+}
+
+impl MojangApiWrapper {
+  pub fn new() -> Self {
+    Self {
+      http_client: reqwest::Client::new(),
+    }
+  }
 }
