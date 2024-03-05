@@ -38,8 +38,11 @@ pub struct Updater {
 
 impl Updater {
     /// Update the Game
-    pub fn update(&self) {
-        unimplemented!()
+    pub async fn update(&self) -> Result<(), Box<dyn std::error::Error>> {
+        // Update Vanilla
+        self.vanilla.update(self.game_dir.clone()).await?;
+
+        Ok(())
     }
 }
 

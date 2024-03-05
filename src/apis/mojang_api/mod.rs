@@ -1,5 +1,6 @@
 pub(crate) mod version_manifest;
 pub(crate) mod version_json;
+pub(crate) mod asset_index;
 
 pub(crate) struct MojangApiWrapper {
   http_client: reqwest::Client,

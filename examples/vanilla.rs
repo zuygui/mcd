@@ -15,5 +15,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     .with_game_dir(Path::new(".minecraft"))
     .build();
 
+  updater.update().await?;
+
   Ok(())
 }

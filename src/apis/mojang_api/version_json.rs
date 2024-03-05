@@ -5,33 +5,16 @@ use super::MojangApiWrapper;
 
 #[derive(Debug, Deserialize)]
 pub(crate) struct VersionJson {
-  arguments: Option<Arguments>,
-  asset_index: AssetIndex,
+  #[serde(rename = "assetIndex")]
+  pub asset_index: AssetIndex,
   assets: String,
   downloads: Downloads,
   id: String,
+  #[serde(rename = "javaVersion")]
   java_version: JavaVersion,
   libraries: Vec<Library>,
-  logging: Logging,
+  #[serde(rename = "mainClass")]
   main_class: String,  
-}
-
-#[derive(Debug, Deserialize)]
-struct Arguments {
-  game: Vec<ArgGame>,
-  jvm: Vec<ArgJvm>,
-}
-
-#[derive(Debug, Deserialize)]
-struct ArgGame {
-  rules: Option<Vec<Rule>>,
-  value: String,
-}
-
-#[derive(Debug, Deserialize)]
-struct ArgJvm {
-  rules: Option<Vec<Rule>>,
-  value: String,
 }
 
 #[derive(Debug, Deserialize)]
@@ -47,14 +30,14 @@ struct Os {
   arch: Option<String>,
 }
 
-#[derive(Debug, Deserialize)]
-struct AssetIndex {
-  id: String,
-  sha1: String,
-  size: u64,
+#[derive(Debug, Deserialize, Clone)]
+pub(crate) struct AssetIndex {
+  pub id: String,
+  pub sha1: String,
+  pub size: u64,
   #[serde(rename = "totalSize")]
-  total_size: u64,
-  url: String,
+  pub total_size: u64,
+  pub url: String,
 }
 
 #[derive(Debug, Deserialize)]
@@ -124,17 +107,6 @@ struct Natives {
   windows: Option<String>,
 }
 
-#[derive(Debug, Deserialize)]
-struct Logging {
-  client: ClientLogging,
-}
-
-#[derive(Debug, Deserialize)]
-struct ClientLogging {
-  argument: String,
-  file: File,
-  type_: String,
-}
 
 #[derive(Debug, Deserialize)]
 struct File {
